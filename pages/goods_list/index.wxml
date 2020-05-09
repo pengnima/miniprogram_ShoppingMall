@@ -1,0 +1,18 @@
+<view class="goods_list">
+  <search-input />
+  <tab-bar tabs="{{tabs}}" bind:TabClickEvent="handleTabClick">
+    <block wx:if="{{tabs[0].isActive}}">
+      <view class="first_tab">
+        <navigator class="goods_item" url="/pages/goods_detail/index?goods_id={{item.goods_id}}" open-type="navigate" wx:for="{{goodsList}}" wx:key="goods_id">
+          <view class="item_img_wrap">
+            <image src="{{item.goods_small_logo}}" mode="widthFix"></image>
+          </view>
+          <view class="item_info_wrap">
+            <view class="info">{{item.goods_name}}</view>
+            <view class="price">￥{{item.goods_price}}</view>
+          </view>
+        </navigator>
+      </view>
+    </block>
+  </tab-bar>
+</view>

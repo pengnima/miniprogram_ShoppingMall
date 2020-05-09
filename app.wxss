@@ -1,0 +1,16 @@
+@import "./styles/iconfont.wxss";
+
+page,view,navigator,text,swiper,swiper-item,image {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* 
+  定义全局变量，例如：
+    主题颜色，统一字体大小
+ */
+page {
+  --themColor: #eb4450;
+  font-size: 28rpx;
+}

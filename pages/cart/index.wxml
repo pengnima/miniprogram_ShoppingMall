@@ -1,0 +1,59 @@
+<view class="cart">
+  <!-- 收货地址 - 开始 -->
+  <view class="revice_address_row">
+    <view class="address_btn" wx:if="{{!address.userName}}">
+      <button bind:tap="handleChooseAddress" type="primary" plain>获取收获地址</button>
+    </view>
+    <view class="address_info" wx:else>
+      <view class="info_detail">
+        <text>收货人：{{address.userName}}</text>
+        <text>{{address.all}}</text>
+      </view>
+      <view class="user_phone">{{address.telNumber}}</view>
+    </view>
+  </view>
+  <!-- 收货地址 - 结束 -->
+  <!-- 购物车信息 - 开始 -->
+  <view class="cart_info">
+    <view class="cart_title">购物车</view>
+    <view class="cart_item" wx:for="{{cart}}" wx:key="goods_id">
+      <view class="item_checkbox">
+        <checkbox-group bindchange="">
+          <checkbox value="" color="#f55"></checkbox>
+        </checkbox-group>
+      </view>
+      <view class="item_img">
+        <image src="{{item.goods_big_logo}}" mode="widthFix"></image>
+      </view>
+      <view class="item_info">
+        <view class="goods_name">{{item.goods_name}}</view>
+        <view class="goods_wrap">
+          <view class="price">￥{{item.goods_price}}</view>
+          <view class="count_choose">
+            <button size="mini">-</button>
+            <text class="count">{{item.count}}</text>
+            <button size="mini">+</button>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 购物车信息 - 结束 -->
+  <!-- 结算栏 - 开始 -->
+  <view class="footer_tool">
+    <view class="total_check">
+      <checkbox-group bindchange="">
+        <checkbox value="" color="#f55">全选</checkbox>
+      </checkbox-group>
+    </view>
+    <view class="calc_price">
+      <text style="font-size:30rpx">合计：</text>
+      <view class="total_price_wrap">
+        <view class="total_price">￥12</view>
+        <text style="font-size:24rpx">包含运费</text>
+      </view>
+    </view>
+    <view class="settle_accounts">结算</view>
+  </view>
+  <!-- 结算栏 - 结束 -->
+</view>
