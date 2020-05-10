@@ -1,66 +1,60 @@
 // pages/user/index.js
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-
+    canIuse: wx.canIUse("button.open-type.getUserInfo"),
+    userInfo: null,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
-  },
+  onLoad: function (options) {},
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-
-  },
+  onReady: function () {},
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    let userInfo = wx.getStorageSync("userInfo") || null;
+    this.setData({
+      userInfo,
+    });
 
+    console.log(this.data.userInfo);
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
-
-  },
+  onHide: function () {},
 
   /**
-   * 生命周期函数--监听页面卸载
+   * 事件函数
    */
-  onUnload: function () {
+  handleGetUser(e) {
+    console.log(e);
 
+    let userInfo = e.detail.userInfo || null;
+
+    if (userInfo != null) {
+      this.setData({
+        userInfo,
+      });
+      wx.setStorageSync("userInfo", userInfo);
+    }
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
+  handelClick() {
+    wx.openSetting({
+      success: result => {},
+      fail: () => {},
+      complete: () => {},
+    });
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
-})
+});

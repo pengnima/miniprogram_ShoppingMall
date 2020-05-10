@@ -19,6 +19,8 @@ page {
 .info_detail {
   flex: 5.5;
   padding-right: 10rpx;
+  display: flex;
+  flex-direction: column;
 }
 .user_phone {
   flex: 3;

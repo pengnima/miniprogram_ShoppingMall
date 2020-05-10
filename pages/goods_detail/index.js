@@ -1,4 +1,4 @@
-import { request } from "../../request/index.js";
+import { request, showToast } from "../../request/index.js";
 Page({
   /**
    * 页面的初始数据
@@ -68,20 +68,14 @@ Page({
       current: this.GoodsPics[index],
     });
   },
-  /**
-   [{
-     goods_id:xxx,
-     count: 1
-   }] 
-   
-   */
+
   // 加入购物车
   handleAddCart() {
     let cartList = wx.getStorageSync("cart") || [];
     let is_not = true; //用这个判断是否是 空 cartList
     if (cartList.length != 0) {
       cartList.forEach(item => {
-        if (item.goodsInfo.goods_id === this.GoodsInfo.goods_id) {
+        if (item.goods_id === this.GoodsInfo.goods_id) {
           item.count++;
           is_not = false;
         }
@@ -90,14 +84,19 @@ Page({
 
     // cartList 为空数组 或者 遍历cartList也没找到对应的goodsId，说明要新增该数据
     if (is_not) {
-      cartList.push({ goodsInfo: this.GoodsInfo, count: 1 });
+      this.GoodsInfo.count = 1;
+      this.GoodsInfo.checked = true;
+      cartList.push({
+        goods_id: this.GoodsInfo.goods_id,
+        goods_name: this.GoodsInfo.goods_name,
+        goods_price: this.GoodsInfo.goods_price,
+        goods_big_logo: this.GoodsInfo.goods_big_logo,
+        count: this.GoodsInfo.count,
+        checked: this.GoodsInfo.checked,
+      });
     }
     wx.setStorageSync("cart", cartList);
 
-    wx.showToast({
-      title: "添加成功",
-      duration: 1000,
-      mask: true,
-    });
+    showToast({ title: "添加成功", icon: "success", duration: 500, mask: true });
   },
 });

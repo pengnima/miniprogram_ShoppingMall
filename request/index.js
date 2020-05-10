@@ -61,13 +61,63 @@ export const openSetting = () => {
 export const chooseAddress = () => {
   return new Promise((resolve, reject) => {
     wx.chooseAddress({
-      success: result => {
+      success: res => {
         // 获取成功后添加进入
-        wx.setStorageSync("address", result);
+        res.all = res.provinceName + res.cityName + res.countyName + res.detailInfo;
+        wx.setStorageSync("address", res);
+        resolve(res);
+      },
+      fail: () => {
+        reject();
+      },
+    });
+  });
+};
+
+// 弹窗
+export const showModal = ({ content }) => {
+  return new Promise((resolve, reject) => {
+    wx.showModal({
+      title: "提示",
+      content,
+      success: result => {
         resolve(result);
       },
       fail: () => {
         reject();
+      },
+    });
+  });
+};
+
+//弹窗2
+export const showToast = ({ title, icon = "none", duration = 1000, mask = false }) => {
+  return new Promise((resolve, reject) => {
+    wx.showToast({
+      title,
+      icon,
+      duration,
+      mask,
+      success: result => {
+        resolve(result);
+      },
+      fail: () => {
+        reject();
+      },
+    });
+  });
+};
+
+//微信支付
+export const requestPayment = parames => {
+  return new Promise((resolve, reject) => {
+    wx.requestPayment({
+      ...parames,
+      success(res) {
+        resolve(res);
+      },
+      fail(err) {
+        reject(err);
       },
     });
   });

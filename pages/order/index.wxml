@@ -1,2 +1,1 @@
-<!--pages/order/index.wxml-->
-<text>pages/order/index.wxml</text>
+<text style="font-size:96rpx">假装支付成功，并生成了订单</text>

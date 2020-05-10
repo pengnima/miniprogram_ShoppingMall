@@ -1,1 +1,125 @@
-/* pages/pay/index.wxss */
+page {
+  padding-bottom: 90rpx;
+}
+
+.revice_address_row {
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+
+  border-bottom: 4rpx solid rgba(255, 85, 85, 0.5);
+}
+
+.address_info {
+  padding: 0 10rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info_detail {
+  flex: 5.5;
+  padding-right: 10rpx;
+  display: flex;
+  flex-direction: column;
+}
+.user_phone {
+  flex: 3;
+  text-align: center;
+}
+
+/* 购物车信息 */
+.cart_title {
+  font-size: 36rpx;
+  padding: 20rpx;
+  border-bottom: 4rpx solid rgba(255, 85, 85, 0.5);
+}
+
+.cart_item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-bottom: 4rpx solid #ddd;
+
+  padding: 10rpx;
+
+  height: 200rpx;
+}
+
+.item_img {
+  flex: 2;
+}
+.item_img image {
+  width: 80%;
+}
+.item_info {
+  flex: 5;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.goods_name {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+
+  font-size: 26rpx;
+}
+
+.goods_wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.goods_wrap .price {
+  color: var(--themColor);
+  font-size: 34rpx;
+}
+
+.count_choose {
+  display: flex;
+  align-items: center;
+}
+.count {
+  padding: 0 20rpx;
+}
+
+/* 底部工具栏 */
+.footer_tool {
+  height: 90rpx;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 -2rpx 6rpx #ccc;
+  background-color: #fff;
+}
+
+.calc_price {
+  flex: 4;
+  display: flex;
+  text-align: right;
+  justify-content: flex-end;
+
+  padding-right: 10rpx;
+}
+.calc_price .total_price {
+  font-size: 34rpx;
+  color: var(--themColor);
+}
+.settle_accounts {
+  line-height: 90rpx;
+  flex: 2;
+  text-align: center;
+  font-size: 38rpx;
+  color: #fff;
+  background-color: rgba(255, 17, 17, 0.8);
+}

@@ -1,1 +1,122 @@
-/* pages/user/index.wxss */
+page {
+  background-color: #eee;
+}
+.user_info_wrap {
+  width: 100%;
+  height: 45vh;
+
+  position: relative;
+}
+.user_header {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20vw;
+  border-radius: 50%;
+  box-shadow: 0 0 10rpx #000;
+  overflow: hidden;
+}
+.user_header image {
+  width: 100%;
+}
+.user_name {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 30%;
+  font-size: 38rpx;
+  color: #fff;
+  text-shadow: 0 0 10rpx #000;
+}
+.user_BG {
+  position: absolute;
+  top: -10rpx;
+  left: -10rpx;
+  filter: blur(16rpx);
+  width: 110%;
+  height: 100%;
+  z-index: -1;
+  background-color: red;
+}
+
+/* 内容部分 history */
+.user_content {
+  position: relative;
+  width: 90%;
+  left: 50%;
+  transform: translateX(-50%);
+  top: -50rpx;
+}
+.content_item {
+  background-color: #fff;
+  padding: 10rpx;
+  border-radius: 6rpx;
+  box-shadow: 0 0 6rpx #aaa;
+  margin-bottom: 16rpx;
+}
+.history {
+  display: flex;
+  justify-content: space-between;
+}
+.history navigator {
+  flex: 1;
+  text-align: center;
+}
+.his_num {
+  color: var(--themColor);
+}
+
+/* 内容部分 order */
+.user_order {
+  display: flex;
+  flex-direction: column;
+}
+.order_title {
+  padding: 10rpx 0;
+  border-bottom: 2rpx solid #ddd;
+}
+.order_content {
+  display: flex;
+  padding-top: 16rpx;
+
+  justify-content: space-between;
+}
+.order_content navigator {
+  flex: 1;
+  text-align: center;
+}
+.order_content .iconfont {
+  font-size: 40rpx;
+  color: var(--themColor);
+}
+.order_text {
+  font-size: 24rpx;
+}
+
+/* 内容部分 address */
+.app_info_wrap navigator,
+.recommend_wrap navigator,
+.address_manage navigator {
+  padding: 8rpx 0;
+}
+
+/* 其他 address */
+.app_info_wrap {
+  background-color: #fff;
+  border-radius: 6rpx;
+  box-shadow: 0 0 6rpx #aaa;
+  margin-bottom: 16rpx;
+}
+.app_info_wrap navigator {
+  padding: 18rpx 10rpx;
+  border-bottom: 2rpx solid #ddd;
+}
+
+.app_info_wrap navigator:last-child {
+  border-bottom: none;
+}
+.app_info_item {
+  display: flex;
+  justify-content: space-between;
+}

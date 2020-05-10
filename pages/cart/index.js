@@ -1,4 +1,10 @@
-import { getSetting, openSetting, chooseAddress } from "../../request/index.js";
+import {
+  getSetting,
+  openSetting,
+  chooseAddress,
+  showModal,
+  showToast,
+} from "../../request/index.js";
 Page({
   /**
    * 页面的初始数据
@@ -6,42 +12,34 @@ Page({
   data: {
     address: {},
     cart: [],
+    totalPrice: 0,
+    totalNum: 0,
+    allChecked: false,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {},
+
   onShow: function () {
     //地址相关
     let address = wx.getStorageSync("address");
-    address.all = address.provinceName + address.cityName + address.countyName + address.detailInfo;
+
     this.setData({
       address,
     });
 
     //购物车信息相关
-    let tempCart = wx.getStorageSync("cart");
-    if (tempCart.length != 0) {
-      let cart = [];
-      tempCart.forEach(item => {
-        cart.push({
-          goods_id: item.goodsInfo.goods_id,
-          goods_name: item.goodsInfo.goods_name,
-          goods_price: item.goodsInfo.goods_price,
-          goods_big_logo: item.goodsInfo.goods_big_logo,
-          count: item.count,
-        });
-      });
 
-      this.setData({
-        cart,
-      });
-    }
+    let cart = wx.getStorageSync("cart") || [];
+
+    this.setCart(cart, false);
   },
   /**
    * 事件
    */
+  //选择地址，网络相关
   handleChooseAddress() {
     //1. 先获取用户设置。（第一次只能是 undefined）
     getSetting().then(res => {
@@ -64,5 +62,88 @@ Page({
         });
       }
     });
+  },
+
+  // 切换checked
+  handleChangeChecked(e) {
+    let { id } = e.currentTarget.dataset;
+    let cart = this.data.cart;
+    let index = cart.findIndex(v => v.goods_id == id);
+    cart[index].checked = !cart[index].checked;
+    this.setCart(cart);
+  },
+
+  // 所有都切换
+  handleAllChecked(e) {
+    let { allChecked, cart } = this.data;
+    cart.forEach(v => {
+      v.checked = !allChecked;
+    });
+    this.setCart(cart);
+  },
+
+  //增加购买数
+  handleChangeCount(e) {
+    let { id, operation } = e.currentTarget.dataset;
+    let cart = this.data.cart;
+
+    let index = cart.findIndex(v => v.goods_id == id);
+
+    //购买数变为0，弹窗是否要删除
+
+    if (cart[index].count == 1 && operation == -1) {
+      showModal({ content: "是否要移除该商品" }).then(res => {
+        if (res.confirm) {
+          cart.splice(index, 1);
+          this.setCart(cart);
+        }
+      });
+    } else {
+      cart[index].count += operation;
+      this.setCart(cart);
+    }
+  },
+
+  //结算
+  handlePay(e) {
+    let { totalNum, address } = this.data;
+    if (totalNum == 0) {
+      showToast({ title: "请选择要购买的商品" });
+      return;
+    }
+    if (Object.keys(address).length == 0) {
+      showToast({ title: "请选择收货地址" });
+      return;
+    }
+    wx.navigateTo({
+      url: "/pages/pay/index",
+      success: result => {},
+    });
+  },
+
+  // 设置购物车 结算栏
+  setCart(cart, isset = true) {
+    let totalPrice = 0;
+    let totalNum = 0;
+    let allChecked = cart.length == 0 ? false : true;
+
+    cart.forEach(v => {
+      if (v.checked) {
+        totalPrice += v.goods_price * v.count;
+        totalNum += v.count;
+      } else {
+        allChecked = false;
+      }
+    });
+    totalPrice = Math.round(totalPrice * 100) / 100;
+    this.setData({
+      cart,
+      totalNum,
+      totalPrice,
+      allChecked,
+    });
+    if (isset) {
+      wx.setStorageSync("cart", cart);
+    }
   },
 });

@@ -1,2 +1,74 @@
-<!--pages/user/index.wxml-->
-<text>pages/user/index.wxml</text>
+<block wx:if="{{userInfo==null}}">
+  <button wx:if="{{canIuse}}" open-type="getUserInfo" plain type="primary" bindgetuserinfo="handleGetUser">
+    登录
+  </button>
+  <view wx:else>请升级微信版本</view>
+</block>
+<block wx:else>
+  <view class="user_info_wrap">
+    <view class="user_header">
+      <image src="{{userInfo.avatarUrl}}" mode="widthFix"></image>
+    </view>
+    <view class="user_name">{{userInfo.nickName}}</view>
+    <image class="user_BG" src="{{userInfo.avatarUrl}}" mode="aspectFill"></image>
+  </view>
+  <view class="user_content">
+    <view class="history content_item">
+      <navigator url="" open-type="navigate">
+        <view class="his_num">0</view>
+        <view class="his_text">收藏的店铺</view>
+      </navigator>
+      <navigator url="" open-type="navigate">
+        <view class="his_num">0</view>
+        <view class="his_text">收藏的商品</view>
+      </navigator>
+      <navigator url="" open-type="navigate">
+        <view class="his_num">0</view>
+        <view class="his_text">关注的商品</view>
+      </navigator>
+      <navigator url="" open-type="navigate">
+        <view class="his_num">0</view>
+        <view class="his_text">我的足迹</view>
+      </navigator>
+    </view>
+    <view class="user_order content_item">
+      <view class="order_title">我的订单</view>
+      <view class="order_content">
+        <navigator url="" open-type="navigate">
+          <view class="iconfont icondingdan"></view>
+          <view class="order_text">全部订单</view>
+        </navigator>
+        <navigator url="" open-type="navigate">
+          <view class="iconfont iconfukuan"></view>
+          <view class="order_text">待付款</view>
+        </navigator>
+        <navigator url="" open-type="navigate">
+          <view class="iconfont icontruck"></view>
+          <view class="order_text">待收货</view>
+        </navigator>
+        <navigator url="" open-type="navigate">
+          <view class="iconfont iconicon"></view>
+          <view class="order_text">退款/退货</view>
+        </navigator>
+      </view>
+    </view>
+    <view class="address_manage content_item">
+      <navigator url="" open-type="navigate">收货地址管理</navigator>
+    </view>
+    <view class="app_info_wrap">
+      <navigator class="app_info_item" url="" open-type="navigate">
+        <view>联系客服</view>
+        <view>400-618-400</view>
+      </navigator>
+      <navigator url="" open-type="navigate">
+        <view>意见反馈</view>
+      </navigator>
+      <navigator url="" open-type="navigate">
+        <view>关于我们</view>
+      </navigator>
+    </view>
+    <view class="recommend_wrap content_item">
+      <navigator url="" open-type="navigate">把应用推荐给别人</navigator>
+    </view>
+  </view>
+</block>
