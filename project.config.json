@@ -119,6 +119,12 @@
 					"pathName": "pages/search/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "反馈界面",
+					"pathName": "pages/feedback/index",
+					"scene": null
 				}
 			]
 		}

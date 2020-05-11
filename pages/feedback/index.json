@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "tab-bar": "../../components/TabBar/TabBar"
+  },
+  "navigationBarTitleText": "反馈界面"
 }

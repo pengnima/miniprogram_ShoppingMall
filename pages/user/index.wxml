@@ -60,8 +60,9 @@
         <view>联系客服</view>
         <view>400-618-400</view>
       </navigator>
-      <navigator url="" open-type="navigate">
+      <navigator url="/pages/feedback/index" open-type="navigate">
         <view>意见反馈</view>
+        <!-- <button class="app_info_button" open-type="feedback">意见反馈</button> -->
       </navigator>
       <navigator url="" open-type="navigate">
         <view>关于我们</view>

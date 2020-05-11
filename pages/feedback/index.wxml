@@ -1,2 +1,21 @@
-<!--pages/feedback/index.wxml-->
-<text>pages/feedback/index.wxml</text>
+<tab-bar tabs="{{tabs}}" bind:TabClickEvent="handleTabClick">
+  <view>问题种类</view>
+  <view class="fb_tips_wrap">
+    <view class="fb_tips_item">功能建议</view>
+    <view class="fb_tips_item">购买遇到问题</view>
+    <view class="fb_tips_item">性能问题</view>
+    <view class="fb_tips_item">其他</view>
+  </view>
+  <view class="fb_content">
+    <textarea placeholder="请描述一下您的问题"></textarea>
+    <view class="fb_tools">
+      <button size="mini">+</button>
+    </view>
+  </view>
+  <view class="submit_btn">
+    <button size="mini" type="primary">
+      <icon type="success_no_circle" color="white"></icon>
+      提交
+    </button>
+  </view>
+</tab-bar>

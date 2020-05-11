@@ -116,6 +116,15 @@ page {
 .app_info_wrap navigator:last-child {
   border-bottom: none;
 }
+
+/* .app_info_button {
+  font-weight: normal;
+  font-size: 28rpx;
+  padding: 0;
+  margin: 0 !important;
+  background-color: unset;
+  display: inline;
+} */
 .app_info_item {
   display: flex;
   justify-content: space-between;
