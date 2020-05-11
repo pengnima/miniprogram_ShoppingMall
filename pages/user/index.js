@@ -6,6 +6,7 @@ Page({
   data: {
     canIuse: wx.canIUse("button.open-type.getUserInfo"),
     userInfo: null,
+    collectsNum: 0,
   },
 
   /**
@@ -23,8 +24,10 @@ Page({
    */
   onShow: function () {
     let userInfo = wx.getStorageSync("userInfo") || null;
+    let collects = wx.getStorageSync("collects") || [];
     this.setData({
       userInfo,
+      collectsNum: collects.length,
     });
 
     console.log(this.data.userInfo);
@@ -49,12 +52,5 @@ Page({
       });
       wx.setStorageSync("userInfo", userInfo);
     }
-  },
-  handelClick() {
-    wx.openSetting({
-      success: result => {},
-      fail: () => {},
-      complete: () => {},
-    });
   },
 });

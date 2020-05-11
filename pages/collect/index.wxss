@@ -1,1 +1,39 @@
-/* pages/collect/index.wxss */
+.cart_item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-bottom: 4rpx solid #ddd;
+
+  padding: 10rpx;
+
+  height: 200rpx;
+}
+
+.item_img {
+  flex: 2;
+}
+.item_img image {
+  width: 80%;
+}
+.item_info {
+  flex: 5;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.goods_name {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+
+  font-size: 26rpx;
+}
+
+.goods_price {
+  color: var(--themColor);
+  font-size: 34rpx;
+}

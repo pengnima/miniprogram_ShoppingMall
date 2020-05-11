@@ -14,7 +14,7 @@
     <view class="goods_row">
       <view class="goods_name">{{goodsObj.goods_name}}</view>
       <view class="goods_collect" bind:tap="handleCollectClick">
-        <view class="iconfont iconshoucang"></view>
+        <view class="iconfont {{isCollect?'iconhtmal5icon24':'iconshoucang'}}"></view>
         <view class="icon_name">收藏</view>
       </view>
     </view>

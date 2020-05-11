@@ -18,8 +18,8 @@
         <view class="his_num">0</view>
         <view class="his_text">收藏的店铺</view>
       </navigator>
-      <navigator url="" open-type="navigate">
-        <view class="his_num">0</view>
+      <navigator url="/pages/collect/index" open-type="navigate">
+        <view class="his_num">{{collectsNum}}</view>
         <view class="his_text">收藏的商品</view>
       </navigator>
       <navigator url="" open-type="navigate">
@@ -34,15 +34,15 @@
     <view class="user_order content_item">
       <view class="order_title">我的订单</view>
       <view class="order_content">
-        <navigator url="" open-type="navigate">
+        <navigator url="/pages/order/index?type=1" open-type="navigate">
           <view class="iconfont icondingdan"></view>
           <view class="order_text">全部订单</view>
         </navigator>
-        <navigator url="" open-type="navigate">
+        <navigator url="/pages/order/index?type=2" open-type="navigate">
           <view class="iconfont iconfukuan"></view>
           <view class="order_text">待付款</view>
         </navigator>
-        <navigator url="" open-type="navigate">
+        <navigator url="/pages/order/index?type=3" open-type="navigate">
           <view class="iconfont icontruck"></view>
           <view class="order_text">待收货</view>
         </navigator>

@@ -1,1 +1,44 @@
-<text style="font-size:96rpx">假装支付成功，并生成了订单</text>
+<wxs module="format">
+var formatTime = function(date) {
+
+  date = getDate(date);
+  var year = date.getFullYear();
+  var month = date.getMonth() + 1;
+  var day = date.getDate();
+  var hour = date.getHours();
+  var minute = date.getMinutes();
+  var second = date.getSeconds();
+
+  return (
+    [year, month, day].map(formatNumber).join("/") +
+    " " +
+    [hour, minute, second].map(formatNumber).join(":")
+  );
+};
+
+var formatNumber =function(n) {
+  n = n.toString();
+  return n[1] ? n : "0" + n;
+};
+
+module.exports = {
+  formatTime: formatTime,
+};
+
+</wxs>
+<tab-bar tabs="{{tabs}}" bind:TabClickEvent="handleTabClick">
+  <view class="order_item_wrap" wx:for="{{orders}}" wx:key="order_id">
+    <view class="order_item">
+      <view class="number_title">订单编号</view>
+      <view class="number_value">{{item.order_number}}</view>
+    </view>
+    <view class="order_item">
+      <view class="price_title">订单价格</view>
+      <view class="price_value">￥{{item.total_price}}</view>
+    </view>
+    <view class="order_item">
+      <view class="date_title">订单日期</view>
+      <view class="date_value">{{format.formatTime(item.create_time*1000)}}</view>
+    </view>
+  </view>
+</tab-bar>

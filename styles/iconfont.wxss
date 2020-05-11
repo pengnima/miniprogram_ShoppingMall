@@ -26,6 +26,7 @@
 
 .iconhtmal5icon24:before {
   content: "\e63c";
+  color: #fb5;
 }
 
 .iconicon:before {

@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "tab-bar": "../../components/TabBar/TabBar"
+  },
   "navigationBarTitleText": "订单信息"
 }

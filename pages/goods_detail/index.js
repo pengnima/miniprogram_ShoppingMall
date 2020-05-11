@@ -1,3 +1,12 @@
+/**
+ * 1. 收藏
+ *    1. onShow时先瞅瞅 缓存中的 收藏商品的id是否和该id一致
+ *        - 是，改变商品图标
+ *        - 否，不改变
+ *    2. 点击商品收藏按钮
+ *        - 判断该商品是否存在 缓存中，已经存在，则删除，不存在，则添加
+ */
+
 import { request, showToast } from "../../request/index.js";
 Page({
   /**
@@ -5,6 +14,7 @@ Page({
    */
   data: {
     goodsObj: {},
+    isCollect: false, //通过这个修改 收藏图标
   },
   GoodsPics: [],
   GoodsInfo: null,
@@ -12,10 +22,10 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onShow() {
+    let curPages = getCurrentPages();
+    let options = curPages[curPages.length - 1].options;
     let { goods_id } = options;
-    console.log(goods_id);
-
     this.getGoodsDetail(goods_id);
   },
 
@@ -25,6 +35,8 @@ Page({
       url: `goods/detail?goods_id=${goods_id}`,
     }).then(res => {
       res = res.data.message;
+      let isCollect = false;
+      console.log(res);
 
       //存放大图图片
       res.pics.forEach(item => this.GoodsPics.push(item.pics_big));
@@ -34,6 +46,10 @@ Page({
         this.GoodsInfo = res;
       }
 
+      // 收藏相关
+      let collects = wx.getStorageSync("collects") || [];
+      isCollect = collects.some(v => v.goods_id == goods_id);
+
       this.setData({
         goodsObj: {
           pics: res.pics,
@@ -41,24 +57,47 @@ Page({
           goods_name: res.goods_name,
           goods_introduce: res.goods_introduce.replace(/\.webp/g, ".jpg"),
         },
+        isCollect,
       });
     });
   },
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {},
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {},
 
   /**
    * 事件函数
    */
   handleCollectClick() {
-    console.log("收藏了");
+    let user = wx.getStorageSync("userInfo") || null;
+    if (user == null) {
+      showToast({ title: "请登录~" });
+      return;
+    }
+    let isCollect = false;
+    let id = this.GoodsInfo.goods_id;
+    let collects = wx.getStorageSync("collects") || [];
+    let index = collects.findIndex(v => v.goods_id == id);
+    if (index != -1) {
+      //表示存在，那么要删除
+      collects.splice(index, 1);
+      wx.showToast({
+        title: "取消成功",
+        icon: "success",
+        duration: 500,
+        mask: true,
+      });
+    } else {
+      collects.push(this.GoodsInfo);
+      isCollect = true;
+      wx.showToast({
+        title: "收藏成功",
+        icon: "success",
+        duration: 500,
+        mask: true,
+      });
+    }
+    wx.setStorageSync("collects", collects);
+    this.setData({
+      isCollect,
+    });
   },
   handleSwiperClick(e) {
     let { index } = e.currentTarget.dataset;

@@ -1,2 +1,13 @@
-<!--pages/collect/index.wxml-->
-<text>pages/collect/index.wxml</text>
+<tab-bar tabs="{{tabs}}" bind:TabClickEvent="handleTabClick">
+  <view class="collects_wrap">
+    <navigator url="/pages/goods_detail/index?goods_id={{item.goods_id}}" class="cart_item" wx:for="{{collects}}" wx:key="goods_id">
+      <view class="item_img">
+        <image src="{{item.goods_big_logo}}" mode="widthFix"></image>
+      </view>
+      <view class="item_info">
+        <view class="goods_name">{{item.goods_name}}</view>
+        <view class="goods_price">￥{{item.goods_price}}</view>
+      </view>
+    </navigator>
+  </view>
+</tab-bar>

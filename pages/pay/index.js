@@ -131,7 +131,7 @@ Page({
             console.log(err); //由于非企业账号，无法支付，会失败的
             console.log("支付失败，但还是要跳转到订单页面");
             wx.navigateTo({
-              url: "/pages/order/index",
+              url: "/pages/order/index?type=1",
             });
           }
         );
