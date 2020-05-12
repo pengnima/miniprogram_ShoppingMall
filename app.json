@@ -10,8 +10,6 @@
     "pages/search/index",
     "pages/user/index",
     "pages/feedback/index",
-    "pages/login/index",
-    "pages/auth/index",
     "pages/pay/index"
   ],
   "window": {
