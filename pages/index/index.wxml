@@ -6,7 +6,7 @@
   <view class="home_swiper">
     <swiper indicator-dots="{{true}}" indicator-active-color="white" autoplay="{{true}}" interval="3000" circular="{{true}}">
       <swiper-item wx:for="{{swiperList}}" wx:key="goods_id">
-        <navigator open-type="redirect" url="{{item.navigator_url}}">
+        <navigator open-type="{{item.open_type}}" url="/pages/goods_detail/index?{{item.navigator_url}}">
           <image src="{{item.image_src}}" mode="widthFix"></image>
         </navigator>
       </swiper-item>
@@ -15,7 +15,7 @@
   <!-- 轮播图 - 结束 -->
   <!-- 导航 - 开始 -->
   <view class="home_cates">
-    <navigator wx:for="{{catesList}}" wx:key="name" open-type="{{catesList[0].open_type}}" url="{{catesList[0].navigator_url}}">
+    <navigator wx:for="{{catesList}}" wx:key="name" open-type="{{catesList[0].open_type}}" url="/pages/category/index">
       <image src="{{item.image_src}}" mode="widthFix"></image>
     </navigator>
   </view>

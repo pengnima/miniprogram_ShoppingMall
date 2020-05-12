@@ -1,4 +1,4 @@
-<view class="cart">
+<view class="pay">
   <!-- 收货地址 - 开始 -->
   <view class="revice_address_row">
     <view class="address_info">

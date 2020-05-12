@@ -1,0 +1,4 @@
+<view class="image_wrap">
+  <image src="{{img_src}}" bind:tap="handlePreView"></image>
+  <icon type="clear" size="23" color="red" bind:tap="handleDelete"></icon>
+</view>

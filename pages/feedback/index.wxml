@@ -7,13 +7,16 @@
     <view class="fb_tips_item">其他</view>
   </view>
   <view class="fb_content">
-    <textarea placeholder="请描述一下您的问题"></textarea>
+    <textarea placeholder="请描述一下您的问题" bind:input="handleInput" value="{{inpValue}}"></textarea>
     <view class="fb_tools">
-      <button size="mini">+</button>
+      <button size="mini" bind:tap="handleUpImgClick">+</button>
+      <view class="up_image_item" wx:for="{{imgs}}" wx:key="*this">
+        <up-img img_src="{{item}}" bind:ImgDeleteEvent="ImgDeleteEvent" data-index="{{index}}" bind:PreViewEvent="PreViewEvent"></up-img>
+      </view>
     </view>
   </view>
   <view class="submit_btn">
-    <button size="mini" type="primary">
+    <button size="mini" type="primary" bind:tap="handleSubmitClick">
       <icon type="success_no_circle" color="white"></icon>
       提交
     </button>

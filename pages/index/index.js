@@ -21,12 +21,16 @@ Page({
   //请求方法
   getSwiperList() {
     request({ url: `home/swiperdata` }).then(res => {
-      res = res.data;
-      if (res.meta.status == 200) {
-        this.setData({
-          swiperList: res.message,
-        });
-      }
+      res = res.data.message;
+      console.log(res);
+      res.forEach(v => {
+        v.navigator_url = v.navigator_url.match(/\?(.+)$/)[1];
+      });
+
+      this.setData({
+        swiperList: res,
+      });
+
       // 要使用data里的数据，必须 this.data
       // console.log(this.data.swiperList);
     });
@@ -49,13 +53,17 @@ Page({
     request({
       url: `home/floordata`,
     }).then(res => {
-      res = res.data;
-
-      if (res.meta.status == 200) {
-        this.setData({
-          floorList: res.message,
+      res = res.data.message;
+      console.log(res);
+      res.forEach(v => {
+        v.product_list.forEach(v1 => {
+          v1.navigator_url = v1.navigator_url.replace(/^(.+)\?/, "$1/index?");
         });
-      }
+      });
+
+      this.setData({
+        floorList: res,
+      });
     });
   },
 });

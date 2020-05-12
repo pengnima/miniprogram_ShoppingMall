@@ -29,6 +29,8 @@ Page({
     }, 500);
   },
   handleInput(e) {
+    console.log(e);
+
     let { value } = e.detail;
 
     this.inpValue = value.trim();
@@ -80,7 +82,9 @@ Page({
   },
 
   //点击取消按钮 （输入框清空）
-  handleCancle() {
+  handleCancle(e) {
+    console.log(e);
+
     this.setData({
       goods: [],
       inputValue: "",

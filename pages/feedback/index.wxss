@@ -41,6 +41,8 @@ textarea {
   font-size: 60rpx;
   color: #ccc;
   margin-left: 10rpx;
+  margin-right: 10rpx;
+  margin-bottom: 30rpx;
   padding: 0;
 
   text-align: center;
@@ -51,6 +53,7 @@ textarea {
 .submit_btn {
   position: relative;
 }
+
 .submit_btn button[size="mini"] {
   position: absolute;
   right: 20rpx;
@@ -59,4 +62,11 @@ textarea {
   align-items: center;
 
   font-size: 28rpx;
+}
+
+/* 上传的图片 */
+.up_image_item {
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+  margin-bottom: 30rpx;
 }

@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "tab-bar": "../../components/TabBar/TabBar"
+    "tab-bar": "../../components/TabBar/TabBar",
+    "up-img": "../../components/UpImg/UpImg"
   },
   "navigationBarTitleText": "反馈界面"
 }
